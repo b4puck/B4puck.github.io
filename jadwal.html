@@ -1,24 +1,62 @@
-
 <!DOCTYPE html>
 <html lang="id">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Jadwal - SDN Cemerlang</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Jadwal Pelajaran - SDN Cemerlang</title>
   <style>
-    body { font-family: Arial, sans-serif; margin: 0; }
-    header, footer { background-color: #0077cc; color: white; text-align: center; padding: 1rem; }
-    nav { background-color: #004080; text-align: center; }
-    nav a { color: white; text-decoration: none; margin: 1rem; display: inline-block; }
-    main { padding: 2rem; }
-    table { width: 100%; border-collapse: collapse; margin-top: 1rem; }
-    th, td { border: 1px solid #ccc; padding: 0.5rem; text-align: center; }
-    th { background-color: #f2f2f2; }
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background: #f0f8ff;
+    }
+    header, footer {
+      background: #0077cc;
+      color: white;
+      padding: 10px;
+      text-align: center;
+    }
+    nav {
+      background: #004a99;
+      padding: 10px;
+      text-align: center;
+    }
+    nav a {
+      color: white;
+      margin: 0 15px;
+      text-decoration: none;
+      font-weight: bold;
+    }
+    main {
+      padding: 20px;
+    }
+    h2 {
+      text-align: center;
+    }
+    table {
+      width: 80%;
+      margin: auto;
+      border-collapse: collapse;
+      background: white;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    }
+    th, td {
+      border: 1px solid #ccc;
+      padding: 12px;
+      text-align: center;
+    }
+    th {
+      background: #0077cc;
+      color: white;
+    }
   </style>
 </head>
 <body>
+
   <header>
     <h1>SDN Cemerlang</h1>
+    <p>Jadwal Pelajaran</p>
   </header>
 
   <nav>
@@ -29,25 +67,25 @@
   </nav>
 
   <main>
-    <h2>Jadwal Pelajaran</h2>
+    <h2>Jadwal Kelas 1</h2>
     <table>
       <tr>
         <th>Hari</th>
-        <th>08:00 - 09:00</th>
-        <th>09:00 - 10:00</th>
-        <th>10:15 - 11:15</th>
+        <th>Jam 1</th>
+        <th>Jam 2</th>
+        <th>Jam 3</th>
       </tr>
       <tr>
         <td>Senin</td>
         <td>Matematika</td>
-        <td>Bahasa Indonesia</td>
         <td>IPA</td>
+        <td>B. Indonesia</td>
       </tr>
       <tr>
         <td>Selasa</td>
+        <td>PPKn</td>
         <td>IPS</td>
-        <td>PKN</td>
-        <td>Penjaskes</td>
+        <td>Seni Budaya</td>
       </tr>
     </table>
   </main>
@@ -55,5 +93,6 @@
   <footer>
     &copy; 2025 SDN Cemerlang
   </footer>
+
 </body>
 </html>
