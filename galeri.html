@@ -1,4 +1,5 @@
-<!DOCTYPE html>
+
+  <!DOCTYPE html>
 <html lang="id">
 <head>
   <meta charset="UTF-8">
@@ -6,53 +7,185 @@
   <title>Galeri - SDN Cemerlang</title>
   <link rel="stylesheet" href="style.css">
   <style>
+    .filter-buttons {
+      text-align: center;
+      margin: 20px;
+    }
+    .filter-buttons button {
+      margin: 5px;
+      padding: 10px 20px;
+      border: none;
+      background-color: #007BFF;
+      color: white;
+      cursor: pointer;
+      border-radius: 5px;
+    }
+    .filter-buttons button.active {
+      background-color: #0056b3;
+    }
+
     .galeri-container {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
       gap: 20px;
       padding: 20px;
     }
-    .galeri-container img {
+
+    .galeri-item {
+      text-align: center;
+    }
+
+    .galeri-item img {
       width: 100%;
-      height: auto;
       border-radius: 8px;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+      cursor: pointer;
       transition: transform 0.3s ease;
     }
-    .galeri-container img:hover {
+
+    .galeri-item img:hover {
       transform: scale(1.05);
+    }
+
+    .caption {
+      margin-top: 10px;
+      font-size: 14px;
+      color: #333;
+    }
+
+    .hidden {
+      display: none;
+    }
+
+    /* Modal */
+    .modal {
+      display: none;
+      position: fixed;
+      z-index: 999;
+      padding-top: 60px;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      overflow: auto;
+      background-color: rgba(0,0,0,0.9);
+    }
+
+    .modal-content {
+      margin: auto;
+      display: block;
+      max-width: 80%;
+    }
+
+    .close {
+      position: absolute;
+      top: 20px;
+      right: 35px;
+      color: #fff;
+      font-size: 40px;
+      font-weight: bold;
+      cursor: pointer;
     }
   </style>
 </head>
 <body>
-  <header>
-    <h1>SDN Cemerlang</h1>
-    <nav>
-      <ul class="nav">
-        <li><a href="index.html">Beranda</a></li>
-        <li><a href="guru.html">Guru</a></li>
-        <li><a href="jadwal.html">Jadwal</a></li>
-        <li><a href="visimisi.html">Visi & Misi</a></li>
-        <li><a href="struktur.html">Struktur</a></li>
-        <li><a href="galeri.html" class="active">Galeri</a></li>
-        <li><a href="ekskul.html">Ekstrakurikuler</a></li>
-        <li><a href="pengumuman.html">Pengumuman</a></li>
-        <li><a href="kontak.html">Kontak</a></li>
-      </ul>
-    </nav>
-  </header>
 
-  <main>
-    <h2 style="text-align:center;">Galeri Kegiatan Siswa</h2>
-    <div class="galeri-container">
-      <img src="img/foto1.jpg" alt="Kegiatan 1">
-      <img src="img/foto2.jpg" alt="Kegiatan 2">
-      <img src="img/foto3.png" alt="Kegiatan 3">
-      <img src="img/foto4.jpg" alt="Kegiatan 4">
-      <img src="img/foto5.jpg" alt="Kegiatan 5">
-      <img src="img/foto6.jpg" alt="Kegiatan 6">
+<header>
+  <h1>SDN Cemerlang</h1>
+  <nav>
+      <ul class="nav">
+      <li><a href="index.html">Beranda</a></li>
+      <li><a href="guru.html">Guru</a></li>
+      <li><a href="jadwal.html">Jadwal</a></li>
+      <li><a href="visimisi.html">Visi & Misi</a></li>
+      <li><a href="struktur.html">Struktur</a></li>
+      <li><a href="galeri.html" class="active">Galeri</a></li>
+      <li><a href="ekskul.html">Ekstrakurikuler</a></li>
+      <li><a href="pengumuman.html">Pengumuman</a></li>
+      <li><a href="kontak.html">Kontak</a></li>
+    </ul>
+  </nav>
+</header>
+
+<main>
+  <h2 style="text-align:center;">Galeri Kegiatan Siswa</h2>
+
+  <div class="filter-buttons">
+    <button onclick="filterGaleri('all')" class="active">Semua</button>
+    <button onclick="filterGaleri('lomba')">Lomba</button>
+    <button onclick="filterGaleri('harian')">Harian</button>
+    <button onclick="filterGaleri('upacara')">Upacara</button>
+  </div>
+
+  <div class="galeri-container">
+    <div class="galeri-item lomba">
+      <img src="img/foto1.jpg" alt="Lomba 17an" onclick="openModal(this)">
+      <div class="caption">Lomba 17 Agustus</div>
     </div>
-  </main>
+    <div class="galeri-item harian">
+      <img src="img/foto2.jpg" alt="Belajar bersama" onclick="openModal(this)">
+      <div class="caption">Kegiatan Belajar Bersama</div>
+    </div>
+    <div class="galeri-item upacara">
+      <img src="img/foto3.jpg" alt="Upacara bendera" onclick="openModal(this)">
+      <div class="caption">Upacara Bendera Hari Senin</div>
+    </div>
+    <div class="galeri-item lomba">
+      <img src="img/foto4.jpg" alt="Lomba menggambar" onclick="openModal(this)">
+      <div class="caption">Lomba Menggambar</div>
+    </div>
+    <div class="galeri-item harian">
+      <img src="img/foto5.jpg" alt="Membaca di perpustakaan" onclick="openModal(this)">
+      <div class="caption">Kegiatan Membaca</div>
+    </div>
+  </div>
+</main>
+
+<!-- Modal -->
+<div id="myModal" class="modal" onclick="closeModal()">
+  <span class="close">&times;</span>
+  <img class="modal-content" id="modalImg">
+</div>
+
+<script>
+  function filterGaleri(category) {
+    const items = document.querySelectorAll('.galeri-item');
+    const buttons = document.querySelectorAll('.filter-buttons button');
+    buttons.forEach(btn => btn.classList.remove('active'));
+    event.target.classList.add('active');
+
+    items.forEach(item => {
+      if (category === 'all') {
+        item.classList.remove('hidden');
+      } else {
+        item.classList.toggle('hidden', !item.classList.contains(category));
+      }
+    });
+  }
+
+  function openModal(imgElement) {
+    const modal = document.getElementById("myModal");
+    const modalImg = document.getElementById("modalImg");
+    modal.style.display = "block";
+    modalImg.src = imgElement.src;
+  }
+
+  function closeModal() {
+    document.getElementById("myModal").style.display = "none";
+  }
+
+  document.querySelector(".close").addEventListener("click", function(event) {
+    event.stopPropagation();
+    closeModal();
+  });
+</script>
+
+<footer>
+  <p>&copy; 2025 SDN Cemerlang</p>
+</footer>
+
+</body>
+</html>
+
 
   <footer>
     <p>&copy; 2025 SDN Cemerlang</p>
